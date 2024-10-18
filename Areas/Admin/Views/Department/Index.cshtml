@@ -1,0 +1,58 @@
+@using smvn.Models;
+@model IList<tblKhoa>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh sách chức năng</h2>
+    </div>
+
+   <p>
+        <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Department" asp-action="Create">
+        <i class="bi bi-file-earmark-text me-1"></i>Add a department</a>
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card recent-seles overflow-auto">
+                        <div class= card-body mt-4>
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">ID</th>
+                                        <th class="col-1 text-center">MenuName</th>
+                                        <th class="col-1 text-center">Visible</th>
+                                        <th class="col-1 text-center">Functions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" scope="row">@item.DepartmentID</td>
+                                            <td class="text-left text-primary" scope="row"><a asp-area="Admin"
+                                                asp-controller="Menu" asp-action="Details"
+                                                asp-route-id="@item.DepartmentID">@item.DepartmentName</a></td>
+                                            <td class="text-center" scope="row">@item.IsActive</td>
+                                            <td class="text-center" scope="row">
+                                                <a asp-area="Admin" asp-controller="Department" asp-action="Edit"
+                                                    asp-route-id="@item.DepartmentID" class="btn btn-primary btn-sm"
+                                                    title="Edit the department"><i class="bi bi-pencil"></i></a>
+
+                                                <a asp-area="Admin" asp-controller="Department" asp-action="Delete"
+                                                    asp-route-id="@item.DepartmentID" class="btn btn-danger btn-sm"
+                                                    title="Delete the department"><i class="bi bi-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </p> 
+</main>
